@@ -38,13 +38,15 @@ Object.deepCopy = function (source) {
 	};
 	return innerCopy(source);
 };
-// binds object functions to self
-Object.bind = function (o) {
+// binds object functions to a context (default: self)
+Object.bind = function (o, ctx) {
+	ctx = ctx || o;
 	$H(o).keys().each(function (k) {
 		var m = o[k];
 		if (Object.isFunction(m))
-			o[k] = m.bind(o);
+			o[k] = m.bind(ctx);
 	});
+	return ctx;
 };
 // String extensions
 Object.extendOnly(String.prototype, {
@@ -79,6 +81,15 @@ Object.extendOnly(String.prototype, {
 		}, this);
 	}
 });
+// Number extensions
+Object.extendOnly(Number.prototype, {
+	between: function (a, b) {
+		return a <= this && this <= b;
+	}
+});
+Math.randomInt = function (min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 // Array extensions
 Object.extendOnly(Array.prototype, {
 	// returns an array without and element
