@@ -8,6 +8,7 @@ This code is released under the terms of the [WTFPL](http://www.wtfpl.net/) publ
 * [CClonable](clonable/CClonable.md)
 * Geometry
  * [CPoint](geometry/CPoint.md)
+ * [CLine](geometry/CLine.md)
  
  
 --
