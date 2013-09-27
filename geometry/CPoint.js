@@ -35,23 +35,27 @@ var CPoint = Class.create(CClonable, {
         return "[" + this.x + "," + this.y + "]";
     }
     , lengthTo: function (p) {
-        return Math.sqrt(Math.pow(p.x - this.x, 2) + Math.pow(p.y - this.y, 2));
+        var tmp = new CPoint(p);
+        return Math.sqrt(Math.pow(tmp.x - this.x, 2) + Math.pow(tmp.y - this.y, 2));
     }
     , radiansTo: function (p) {
-        return Math.atan2(p.y - this.y, p.x - this.x);
+        var tmp = new CPoint(p);
+        return Math.atan2(tmp.y - this.y, tmp.x - this.x);
     }
     , degreesTo: function (p) {
-        return Math.atan2(p.y - this.y, p.x - this.x) * 180 / Math.PI;
+        return this.radiansTo(p) * 180 / Math.PI;
     }
     , distanceTo: function (p) {
-        return new CPoint(p.x - this.x, p.y - this.y);
+        var tmp = new CPoint(p);
+        return new CPoint(tmp.x - this.x, tmp.y - this.y);
     }
     , middleTo: function (p) {
         return this.clone().moveBy(this.distanceTo(p).scaleBy(2));
     }
     , moveBy: function (p) {
-        this.x += p.x;
-        this.y += p.y;
+        var tmp = new CPoint(p);
+        this.x += tmp.x;
+        this.y += tmp.y;
 
         return this;
     }
