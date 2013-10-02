@@ -124,7 +124,7 @@ Object.extend(Event, {
     },
     // ctrl + click, meta + click, middle click = open in new tab
     isOpenInNewTabClick: function (event) {
-        return ((e.type == 'click' && (event.ctrlKey || event.metaKey)) || Event.isMiddleClick(event));
+        return ((event.type == 'click' && (event.ctrlKey || event.metaKey)) || Event.isMiddleClick(event));
     }
 });
 // Element extensions
