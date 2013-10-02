@@ -207,6 +207,34 @@ x = Math.randomInt(0,1);
 console.log(x); // 0 or 1
 ```
 
+## Array
+
+### array.minus(otherArray) -> Array
+
+**description**
+
+Instance method: performs array subtraction, <code>this - otherArray</code>, relying on <code>Array.without</code>.
+Just a shortcut to a proper invocation of <code>Function.apply</code> on <code>Array.without</code>.
+
+**example**
+
+```
+console.log([1,2,3].minus([2,3,4]); // [1]
+```
+
+### array.range(start, len) -> Array
+
+**description**
+
+Instance method: extracts a portion of <code>len</code> elements from current instance starting at position <code>start</code>;
+just forwards its arguments to <code>Array.slice</code>.
+
+**example**
+
+```
+console.log([1,2,3,4,5,6].range(1,2)); // [2,3]
+```
+
 ## Event
 
 ### Event.wheel(event) -> Number

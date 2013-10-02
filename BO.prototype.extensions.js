@@ -92,20 +92,14 @@ Math.randomInt = function (min, max) {
 };
 // Array extensions
 Object.extendOnly(Array.prototype, {
-    // returns an array without and element
+    // returns an array without any element of the passed one
     minus: function (a) {
-        return this.filter(function (i) {
-            return a != i;
-        });
+        return Array.prototype.without.apply(this, a);
     },
     // returns a portion of the array from start for len elements
     // ex: [1,2,3,4,5,6].range(1,2) -> [2,3]
     range: function (start, len) {
-        var rt = [];
-        for (var i = start; i < start + len; ++i) {
-            rt.push(this[i]);
-        }
-        return rt;
+        return this.slice(start, start + len);
     }
 });
 // Event extensions
