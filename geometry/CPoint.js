@@ -32,7 +32,7 @@ var CPoint = Class.create(CClonable, {
         }
     }
     , toString: function () {
-        return "[" + this.x + "," + this.y + "]";
+        return "P[{0},{1}]".printf(this.x, this.y);
     }
     , lengthTo: function (p) {
         var tmp = new CPoint(p);

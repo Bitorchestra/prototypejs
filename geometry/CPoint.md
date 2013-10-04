@@ -28,7 +28,7 @@ Class constructor: may be called with zero, one, or two parameters, with followi
 
 **description**
 
-Returns a string representation of current instance formatted as <code>[x,y]</code>
+Returns a string representation of current instance formatted as <code>P[x,y]</code>
 
 --
 
@@ -70,7 +70,7 @@ i.e. the amount to be added to current instance to reach <code>destination</code
 
 ```
 var a = new CPoint(10,20), b = new CPoint(50);
-console.log(a.distanceTo(b).toString());   // [40,30]
+console.log(a.distanceTo(b).toString());   // P[40,30]
 ```
 
 --
@@ -87,7 +87,7 @@ as boundaries.
 
 ```
 var a = new CPoint(10), b = new CPoint(50);
-console.log(a.middleTo(b).toString());   // [30,30]
+console.log(a.middleTo(b).toString());   // P[30,30]
 ```
 
 --
@@ -104,11 +104,11 @@ Returns current instance for method chaining.
 ```
 var a = new CPoint(10);
 a.moveBy(5);
-console.log(a.toString());   // [15,15]
+console.log(a.toString());   // P[15,15]
 a.moveBy([5,15]);
-console.log(a.toString());   // [20,30]
+console.log(a.toString());   // P[20,30]
 a.moveBy(new CPoint(1));
-console.log(a.toString());   // [21,31]
+console.log(a.toString());   // P[21,31]
 ```
 
 --
@@ -124,9 +124,9 @@ Returns current instance for method chaining.
 ```
 var a = new CPoint(3);
 a.scaleBy(3);
-console.log(a.toString());   // [1,1]
+console.log(a.toString());   // P[1,1]
 a.scaleBy(0.5);
-console.log(a.toString());   // [2,2]
+console.log(a.toString());   // P[2,2]
 ```
 
 --

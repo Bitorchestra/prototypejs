@@ -14,12 +14,11 @@ var CLine = Class.create(CClonable, {
                 this.p1 = new CPoint(a[2], a[3]);
                 break;
             default:
-                console.debug(a);
-                throw "Invalid construction arguments";
+                throw "Invalid construction arguments: {0}".printf(a);
         }
     }
     , toString: function () {
-        return "[" + this.p0 + "-" + this.p1 + "]";
+        return "L[{0},{1}]".printf(this.p0.toString(), this.p1.toString());
     }
     , length: function () {
         return this.p0.lengthTo(this.p1);

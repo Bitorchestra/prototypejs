@@ -22,7 +22,7 @@ Class constructor: may be called with two or four parameters, with following sem
 
 **description**
 
-Returns a string representation of current instance formatted as <code>[[x0,y0]-[x1,y1]]</code>
+Returns a string representation of current instance formatted as <code>L[[x0,y0],[x1,y1]]</code>
 
 --
 
@@ -66,7 +66,7 @@ distance from it's <code>p0</code>.
 ```
 var a = new CLine(0, 100);
 var p = a.getPortion(0.25);
-console.log(p.toString());  // [25,25]
+console.log(p.toString());  // P[25,25]
 ```
 
 --
