@@ -21,7 +21,7 @@ Following code is released under the terms of the [WTFPL](http://www.wtfpl.net/)
  * [CRect](geometry/CRect.md)
  * [CViewportRect](geometry/CViewportRect.md)
  * [CMarginRect](geometry/CMarginRect.md)
- 
+ * [CHtmlRect](geometry/CHtmlRect.md)
  
 --
 
