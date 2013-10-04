@@ -15,6 +15,7 @@ Retuns a <code>Hash</code> with one or more of these keys set:
 * "top"
 * "right"
 * "bottom"
+
 Value associated with each key is the correspondent pixel overflow of this rectangle wrt the current viewport.
 
 In case of no overflow, <code>null</code> is returned.

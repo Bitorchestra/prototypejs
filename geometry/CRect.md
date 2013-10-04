@@ -210,4 +210,5 @@ Returns an <code>Object</code> with these properties:
 * "top"
 * "height"
 * "width"
+
 Their value is a string representing the correspondent position or dimension of this rectangle in pixel (example: <code>"20px"</code>).
