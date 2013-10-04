@@ -283,8 +283,15 @@ Radiuses are intended to be numbers in <code>px</code> u.m.
 
 Returns value of a parameter bound to an element. This method starts looking in <code>element</code>'s store via <code>Element.retrieve</code>; if nothing is found
 there, then it looks through <code>element</code>'s attributes; if neither the attribute is defined, the parameter is the <code>defaultValue</code> provided, if any.
+<code>defaultValue</code> can also be a function with no parameters to support lazy intialization.
 
 After this, the computed parameter value is stored in <code>element</code>'s cache via <code>Element.store</code> to speed up successive retrievals.
+
+**example**
+
+```
+var sz = Element.getParameter('foo', 'data-size', Element.getDimensions.curry('foo'));
+```
 
 --
 

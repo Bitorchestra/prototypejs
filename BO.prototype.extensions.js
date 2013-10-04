@@ -143,7 +143,7 @@ Element.addMethods({
     // get "parameter" looking in element store or in element attributes
     // value is then stored in element store for faster retrieval next calls
     , getParameter: function (element, paramName, defaultValue) {
-        var rt = element.retrieve(paramName) || element.readAttribute(paramName) || defaultValue;
+        var rt = element.retrieve(paramName) || element.readAttribute(paramName) || (Object.isFunction(defaultValue) ? defaultValue() : defaultValue);
         element.store(paramName, rt);
         return rt;
     }
