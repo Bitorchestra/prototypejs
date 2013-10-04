@@ -18,6 +18,9 @@ Following code is released under the terms of the [WTFPL](http://www.wtfpl.net/)
 * Geometry
  * [CPoint](geometry/CPoint.md)
  * [CLine](geometry/CLine.md)
+ * [CRect](geometry/CRect.md)
+ * [CViewportRect](geometry/CViewportRect.md)
+ * [CMarginRect](geometry/CMarginRect.md)
  
  
 --
