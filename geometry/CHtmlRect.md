@@ -24,7 +24,8 @@ rect.makeDraggable();   // now we can move it around
 ```
 change its appearence programmatically
 ```
-rect.symScaleBy(0.9);   // and changing its appearence programmatically
+rect.symScaleBy(0.9);
+rect.moveBy([50,0]);
 ```
 react to any change via custom event:
 ```
