@@ -189,6 +189,14 @@ var CRect = Class.create(CClonable, {
         }, this);
         return this;
     }
+    , getStyle: function () {
+        return {
+            left: this.left + "px"
+            , top: this.top + "px"
+            , height: this.height + "px"
+            , width: this.width + "px"
+        };
+    }
 });
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * 
@@ -253,13 +261,5 @@ var CMarginRect = Class.create(CRect, {
             }
         });
         return (rt.size() ? rt : null);
-    }
-    , getStyle: function () {
-        return {
-            left: this.left + "px"
-            , top: this.top + "px"
-            , height: this.height + "px"
-            , width: this.width + "px"
-        };
     }
 });

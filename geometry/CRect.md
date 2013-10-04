@@ -201,3 +201,13 @@ console.log(y.toString());  // R[[40,40],[240,240]]
 console.log(y.getDimensions().toString());  // P[200,200]
 ```
 
+--
+
+### rect.getStyle() -> Object
+
+Returns an <code>Object</code> with these properties:
+* "left"
+* "top"
+* "height"
+* "width"
+Their value is a string representing the correspondent position or dimension of this rectangle in pixel (example: <code>"20px"</code>).
