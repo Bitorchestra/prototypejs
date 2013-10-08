@@ -476,7 +476,7 @@ Event.observe.curry(document.body, 'click', function(event) {
 
 Instance method: on dom ready, registers this function to be executed every time <code>eventType</code> is fired on <code>target</code>,
 and executes it a first time. 
-Usually applied when new handlers must be installed through some js code coming with a page snippet.
+Usually applied when new handlers must be installed through some js code coming with a page snippet via ajax calls.
 
 **returns**
 
