@@ -1,5 +1,15 @@
 # BitOrchestra's prototypejs extensions
 
+* [Object](#object)
+* [String](#string)
+* [Number](#number)
+* [Math](#math)
+* [Array](#array)
+* [Event](#event)
+* [Element](#element)
+* [Element.Layout](#elementlayout)
+* [Function](#function)
+
 ## Object
 
 ### Object.extendOnly(dest, source) -> Object
@@ -362,3 +372,132 @@ vertStuff = l.sum('border-top', 'border-bottom',
                   'padding-top', 'padding-bottom');
 
 ```
+
+## Function
+
+### function.lambda(...) -> Function
+
+**description**
+
+Instance method: performs a right-bind of specified arguments, with a <code>curry</code>-symmetrical behaviour.
+
+**returns**
+
+A function that expects some left-arguments to be invoked with to provide a result.
+
+**example**
+
+```
+var f = function(a,b,c,d) { return (a+b) * (c+d); };
+var g = f.lambda(1, 1); // g = f'(a,b) => (a+b) * (1+1)
+g(2, 2);    // 8
+
+var addFooClassName = Element.addClassName.lambda('foo');
+addFooClassName(document.body);
+```
+
+--
+
+### function.onDomLoaded() -> Function
+
+**description**
+
+Instance method: registers this function to be executed on <code>dom:loaded</code>, ensuring that multiple calls to this method will execute this function only once.
+
+**returns**
+
+Current instance for method chaining
+
+**example**
+
+```
+(function(event) { ... }).onDomLoaded();    // anonymous function will be executed on dom:loaded
+var f = function(event) { ... };
+f.onDomLoaded();
+...
+f.onDomLoaded();    // f will be executed once on dom:loaded, not twice
+```
+
+--
+
+### function.observeOnce(eventType[, target = document.body]) -> Function
+
+**description**
+
+Instance method: registers this function to be executed only once when <code>eventType</code> is fired on <code>target</code>.
+This method will actually define an event handler wrapper around this function that will <code>stopObserving</code> once executed.
+
+**returns**
+
+Current instance for method chaining
+
+**example**
+
+```
+(function(event) {
+    (function(event) {
+        console.log('clicked somewhere');
+    }).observeOnce('click');
+}).onDomLoaded();
+```
+
+--
+
+### function.registerUnobtrusiveHandler(eventType[, target = document.body]) -> Function
+
+**description**
+
+Instance method: on <code>dom:loaded</code>, registers this function to be executed every time <code>eventType</code> is fired on <code>target</code>,
+and executes it a first time (only once per function instance, as for <code>onDomLoaded</code>). 
+Usually applied in dom-rewrite scenarios after ajax loading part of the page, when this behaviour makes sense.
+
+**returns**
+
+Current instance for method chaining
+
+**example**
+
+```
+(function(event) {
+    // upgrade markup
+}).registerUnobtrusiveHandler('BO:loaded'); // every ajax call ends with an Event.fire(updated_element, 'BO:loaded')
+
+// but if you don't want/need the first call, follow the existing path
+Event.observe.curry(document.body, 'click', function(event) {
+    console.log('clicked somewhere');
+}).onDomLoaded();
+```
+
+--
+
+## function.deferUnobtrusiveHandler(eventType[, target = document.body]) -> function
+
+**description**
+
+Instance method: on dom ready, registers this function to be executed every time <code>eventType</code> is fired on <code>target</code>,
+and executes it a first time. 
+Usually applied when new handlers must be installed through some js code coming with a page snippet.
+
+**returns**
+
+Current instance for method chaining
+
+## function.onWindowResized() -> function
+
+**description**
+
+Will make this function execute on resize end instead of being fired at every <code>resize</code> event triggered by <code>window</code>, using a timer to delay execution.
+
+**returns**
+
+Current instance for method chaining
+
+## function.stopOnWindowResized() -> function
+
+**description**
+
+Will stop observing this function for window resized; function must have been installed as event handler for such event via the method above.
+
+**returns**
+
+Current instance for method chaining

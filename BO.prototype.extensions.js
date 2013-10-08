@@ -203,3 +203,97 @@ Element.Layout.addMethods({
         }, this);
     }
 });
+// Function extensions
+Object.extendOnly(Function.prototype, {
+    lambda: function () {
+        var args = $A(arguments);
+        return (function () {
+            var a = args.slice(0);
+            a.unshift.apply(a, $A(arguments));
+            return this.apply(this, a);
+        }).bind(this);
+    },
+
+    onDomLoaded: function () {
+        // observe if not already registered
+        if (!this._observeForDomLoaded) {
+            this._observeForDomLoaded = true;
+            Event.observe(document, 'dom:loaded', this);
+        }
+        return this;
+    },
+
+    observeOnce: function (eventType, target) {
+        target = (target || document.body);
+        // execute then stop observing
+        var hnd = (function (evt) {
+            this(evt);
+            Event.stopObserving(target, eventType, hnd);
+        }).bind(this);
+        // observe
+        Event.observe(target, eventType, hnd);
+        return this;
+    },
+
+    registerUnobtrusiveHandler: function (eventType, target) {
+        // register observer on dom loaded, and fire it once
+        (function (evt) {
+            if (!this._executedOnDomLoaded) {
+                this._executedOnDomLoaded = true;
+                this(evt); // execute on dom loaded
+            }
+            // observe on even, when dom is loaded
+            Event.observe((target || document.body), eventType, this); // register on target load
+        }).bind(this).onDomLoaded();
+        return this;
+    },
+
+    deferUnobtrusiveHandler: function (eventType, target) {
+        // register observer on dom ready, and fire it once
+        (function (evt) {
+            this(evt);  // execute on ajax load
+            Event.observe((target || document.body), eventType, this); // register on target load
+        }).bind(this).defer();
+        return this;
+    },
+
+    onWindowResized: function () {
+        var rtime = new Date(1, 1, 1970, 0, 0, 0);
+        var timeout = false;
+        var delta = 0.2;
+        var self = this;
+        
+        var hnd = function (evt) {
+            rtime = new Date();
+            if (timeout === false) {
+                timeout = true;
+                resizeEnd.delay(delta);
+            }
+        };
+
+        function resizeEnd() {
+            if (new Date() - rtime < delta) {
+                resizeEnd.delay(delta);
+            } else {
+                timeout = false;
+                try {
+                    self();
+                } catch (e) {
+                    Event.stopObserving(window, 'resize', hnd);
+                }
+            }
+        }
+
+        self._onWindowResized = hnd;
+        Event.observe(window, 'resize', hnd);
+        return self;
+    },
+    
+    stopOnWindowResized: function() {
+        if (this._onWindowResized) {
+            Event.stopObserving(this._onWindowResized);
+            delete this._onWindowResized;
+        }
+        return this;
+    }
+});
