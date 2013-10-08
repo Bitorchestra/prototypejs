@@ -15,6 +15,7 @@ Following code is released under the terms of the [WTFPL](http://www.wtfpl.net/)
 
 * [Extensions to built-in and prototype classes](BO.prototype.extensions.md)
 * [CClonable](clonable/CClonable.md)
+* [CInstanceRegistry](instance-registry/CInstanceRegistry.md)
 * Geometry
  * [CPoint](geometry/CPoint.md)
  * [CLine](geometry/CLine.md)
