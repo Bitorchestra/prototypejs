@@ -40,17 +40,16 @@ CInstanceRegistry = Class.create({
         }, this);
     }
     , purgeInstance: function (elementId) {
-        //console.log('purge ', elementId);
         try {
             var inst = this.instances.get(elementId);
             this.instances.unset(elementId);
             inst.dispose && inst.dispose();
             delete inst;
         } catch (e) {
-            BO.logException(e);
+            console.error(e);
         }
     }
-    , destroy: function () {
+    , dispose: function () {
         this.instances.keys().each(this.purgeInstance, this);
     }
 });

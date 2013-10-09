@@ -52,9 +52,9 @@ Destroys instance bound to <code>elementId</code> and removes the information fr
 
 --
 
-### registry.destroy() -> void
+### registry.dispose() -> void
 
 **description**
 
-Destroies and removes every instance from the registry.
+Destroies and removes every instance from the registry. If instances also have a <code>dispose</code> method, it will be invoked before removal.
 
